@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_countOfWP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -13,7 +14,8 @@
         android:layout_marginTop="32dp"
         android:text="Lat:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_lat"
@@ -22,7 +24,8 @@
         android:layout_marginTop="32dp"
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labellat"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labellon"
@@ -31,7 +34,8 @@
         android:layout_marginTop="16dp"
         android:text="lon:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labellat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labellat"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_lon"
@@ -40,7 +44,8 @@
         android:layout_marginTop="16dp"
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labellon"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_lat"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labelaltitude"
@@ -49,7 +54,8 @@
         android:layout_marginTop="16dp"
         android:text="Altitude:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labellon" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labellon"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_altitude"
@@ -57,7 +63,8 @@
         android:layout_height="wrap_content"
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labelaltitude"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelaltitude" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelaltitude"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labelaccuracy"
@@ -66,7 +73,8 @@
         android:layout_marginTop="16dp"
         android:text="Accuracy:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelaltitude" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelaltitude"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_accuracy"
@@ -74,7 +82,8 @@
         android:layout_height="wrap_content"
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labelaccuracy"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelaccuracy" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelaccuracy"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labelspeed"
@@ -83,7 +92,8 @@
         android:layout_marginTop="16dp"
         android:text="Speed:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelaccuracy" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelaccuracy"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_speed"
@@ -91,7 +101,8 @@
         android:layout_height="wrap_content"
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labelspeed"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelspeed" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelspeed"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labelsensor"
@@ -100,7 +111,8 @@
         android:layout_marginTop="16dp"
         android:text="Sensor:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_gps" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_gps"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_sensor"
@@ -108,7 +120,8 @@
         android:layout_height="wrap_content"
         android:text="Cell Tower + Wifi"
         app:layout_constraintStart_toEndOf="@+id/tv_labelsensor"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelsensor" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelsensor"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_labelupdates"
@@ -116,7 +129,8 @@
         android:layout_height="wrap_content"
         android:text="Updates:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_locationsupdates" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_locationsupdates"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_updates"
@@ -124,28 +138,33 @@
         android:layout_height="wrap_content"
         android:text="Off"
         app:layout_constraintStart_toEndOf="@+id/tv_labelupdates"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelupdates" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelupdates"
+        tools:ignore="HardcodedText" />
 
     <Switch
         android:id="@+id/sw_locationsupdates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:checked="true"
+        android:checked="false"
+        android:minHeight="48dp"
         android:text="Location Updates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:ignore="HardcodedText,UseSwitchCompatOrMaterialXml" />
 
     <Switch
         android:id="@+id/sw_gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:minHeight="48dp"
         android:text="GPS/SavePower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelupdates" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelupdates"
+        tools:ignore="HardcodedText,UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/tv_address"
@@ -161,7 +180,8 @@
         android:layout_marginTop="16dp"
         android:text="Address:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed"
+        tools:ignore="HardcodedText" />
 
     <View
         android:id="@+id/divider"
@@ -170,6 +190,53 @@
         android:layout_marginTop="32dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
+
+    <TextView
+        android:id="@+id/tv_waypoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="WayPoints:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelsensor" />
+
+    <TextView
+        android:id="@+id/tv_wayPointCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tv_waypoints"
+        app:layout_constraintTop_toTopOf="@+id/tv_waypoints" />
+
+    <Button
+        android:id="@+id/btn_newWayPoint"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="New WayPoint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_waypoints" />
+
+    <Button
+        android:id="@+id/btn_showWaypoint"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Show Waypoint List"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_showMap" />
+
+    <Button
+        android:id="@+id/btn_showMap"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Show Map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_newWayPoint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
