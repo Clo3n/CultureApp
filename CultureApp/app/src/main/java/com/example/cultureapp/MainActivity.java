@@ -13,7 +13,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,8 +29,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int DEFAULT_UPDATE = 30;
-    public static final int FAST_UPDATE = 5;
+    public static final int DEFAULT_UPDATE = 5;
+    public static final int FAST_UPDATE = 1;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     TextView tv_lat, tv_lon, tv_altitude, tv_accuracy, tv_speed, tv_sensor, tv_updates, tv_address, tv_wayPointCount;
 
@@ -55,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Google's API for location services.
     FusedLocationProviderClient fusedLocationProviderClient;
+
+    public static double lonCurrentLocMA, latCurrentLocMA, neededLon, neededLat;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -107,31 +108,22 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        btn_newWaypoint.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //get the gps location
+        btn_newWaypoint.setOnClickListener(v -> {
+            //get the gps location
 
-                // add the new location to the global list
-                MyApplication myApplication = (MyApplication) getApplicationContext();
-                savedLocations = myApplication.getMyLocations();
-                savedLocations.add(currentLocation);
-            }
+            // add the new location to the global list
+            MyApplication myApplication = (MyApplication) getApplicationContext();
+            savedLocations = myApplication.getMyLocations();
+            savedLocations.add(currentLocation);
         });
 
-        btn_showWaypoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ShowSavedLocationsList.class);
-                startActivity(i);
-            }
-        });
-        btn_showMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(i);
-            }
+        /*btn_showWaypoint.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, ShowSavedLocationsList.class);
+            startActivity(i);
+        });*/
+        btn_showMap.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(i);
         });
 
 
@@ -140,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 // most accurate - use GPS
                 //noinspection deprecation
                 locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-                tv_sensor.setText("Using GPS sensors");
+                tv_sensor.setText("Izmanto GPS");
             } else {
                 //noinspection deprecation
                 locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-                tv_sensor.setText("Using Towers + WIFI");
+                tv_sensor.setText("Izmanto torņus + WIFI");
             }
         });
 
@@ -155,13 +147,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 // turn off location tracking
                 stopLocationUpdates();
-                tv_lat.setText("Not tracking location");
-                tv_lon.setText("Not tracking location");
-                tv_speed.setText("Not tracking location");
-                tv_address.setText("Not tracking location");
-                tv_accuracy.setText("Not tracking location");
-                tv_altitude.setText("Not tracking location");
-                tv_sensor.setText("Not tracking location");
+                tv_lat.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_lon.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_speed.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_address.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_accuracy.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_altitude.setText("Atrašanās vietas atjaunināšana ir izslēgta");
+                tv_sensor.setText("Atrašanās vietas atjaunināšana ir izslēgta");
 
                 fusedLocationProviderClient.removeLocationUpdates(locationCallBack);
             }
@@ -172,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void startLocationUpdates() {
-        tv_updates.setText("Location is being tracked");
+        tv_updates.setText("Atrašanās vieta tiek atjaunota");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -189,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void stopLocationUpdates() {
-        tv_updates.setText("Location is not being tracked");
+        tv_updates.setText("Atrašanās vieta netiek atjaunota");
     }
 
     @Override
@@ -233,7 +225,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateUIValues(Location location) {
         // update all of the text
         tv_lat.setText(String.valueOf(location.getLatitude()));
+        latCurrentLocMA = location.getLatitude();
         tv_lon.setText(String.valueOf(location.getLongitude()));
+        lonCurrentLocMA = location.getLatitude();
         tv_accuracy.setText(String.valueOf(location.getAccuracy()));
 
         if (location.hasAltitude()) {
@@ -254,13 +248,37 @@ public class MainActivity extends AppCompatActivity {
             tv_address.setText(addresses.get(0).getAddressLine(0));
         }
         catch (Exception e){
-            tv_address.setText("Unable to get street address");
+            tv_address.setText("Nav iespējams iegūt addresi");
         }
 
         MyApplication myApplication = (MyApplication) getApplicationContext();
         savedLocations = myApplication.getMyLocations();
+        for(int j=0;j<MyApplication.Dots.length;j++){
+            neededLat= MyApplication.Dots[j][0];
+            neededLon= MyApplication.Dots[j][1];
+            if(latCurrentLocMA>=neededLat-0.00004 && latCurrentLocMA<=neededLat+0.00004 && lonCurrentLocMA>=neededLon-0.00004 && lonCurrentLocMA<=neededLon+0.00004){
+                switch (j){
+                    case 3:
+                        Intent i3 = new Intent(MainActivity.this, MainActivity2.class);
+                        startActivity(i3);
+                        break;
+                    case 14:
+                        Intent i14 = new Intent(MainActivity.this, MainActivity3.class);
+                        startActivity(i14);
+                        break;
+                    default:
+                        Intent idefault = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(idefault);
+                }
+                //Intent i = new Intent(MainActivity.this, MainActivity2.class);
+                //startActivity(i);
+                while(latCurrentLocMA>=neededLat-0.00004 && latCurrentLocMA<=neededLat+0.00004 && lonCurrentLocMA>=neededLon-0.00004 && lonCurrentLocMA<=neededLon+0.00004);
+            }
+        }
 
         // show the number of waypoints saved
         tv_wayPointCount.setText(Integer.toString(savedLocations.size()));
+
+
     }
 }

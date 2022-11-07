@@ -12,7 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Lat:"
+        android:text="Platums:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
@@ -32,7 +32,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="lon:"
+        android:text="Garums:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labellat"
         tools:ignore="HardcodedText" />
@@ -52,7 +52,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Altitude:"
+        android:text="Augstums:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labellon"
         tools:ignore="HardcodedText" />
@@ -71,7 +71,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Accuracy:"
+        android:text="Precizitāte:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labelaltitude"
         tools:ignore="HardcodedText" />
@@ -90,10 +90,12 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Speed:"
+        android:alpha="0"
+        android:text="Ātrums:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labelaccuracy"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/tv_speed"
@@ -102,14 +104,15 @@
         android:text="0.00"
         app:layout_constraintStart_toEndOf="@+id/tv_labelspeed"
         app:layout_constraintTop_toTopOf="@+id/tv_labelspeed"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/tv_labelsensor"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Sensor:"
+        android:text="Sensors:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_gps"
         tools:ignore="HardcodedText" />
@@ -127,7 +130,7 @@
         android:id="@+id/tv_labelupdates"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Updates:"
+        android:text="Atjauninājumi:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_locationsupdates"
         tools:ignore="HardcodedText" />
@@ -146,9 +149,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:checked="false"
+        android:checked="true"
         android:minHeight="48dp"
-        android:text="Location Updates"
+        android:text="Atrašanās vietas atjaunināšana"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
@@ -159,6 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:checked="true"
         android:minHeight="48dp"
         android:text="GPS/SavePower"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,10 +179,10 @@
 
     <TextView
         android:id="@+id/tv_lbladdress"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="23dp"
         android:layout_marginTop="16dp"
-        android:text="Address:"
+        android:text="Addrese:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed"
         tools:ignore="HardcodedText" />
@@ -199,6 +203,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="WayPoints:"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labelsensor" />
 
@@ -207,6 +212,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/tv_waypoints"
         app:layout_constraintTop_toTopOf="@+id/tv_waypoints" />
 
@@ -215,6 +221,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:text="New WayPoint"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -224,7 +231,9 @@
         android:id="@+id/btn_showWaypoint"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:alpha="0"
         android:text="Show Waypoint List"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_showMap" />
@@ -233,7 +242,8 @@
         android:id="@+id/btn_showMap"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:text="Show Map"
+        android:layout_marginTop="15dp"
+        android:text="Rādīt karti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
